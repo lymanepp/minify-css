@@ -1,0 +1,14 @@
+name: 'Minify CSS'
+description: 'Minify CSS and associated map file.'
+
+inputs:
+  path:
+    description: 'The directory containing the static website'
+    required: true
+  css:
+    description: 'The CSS file to minify'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/lymanepp/minify-css:main'
