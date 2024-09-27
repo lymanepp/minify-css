@@ -1,8 +1,9 @@
-import cssnano from 'cssnano';
-import purgecss from '@fullhuman/postcss-purgecss';
+const cssnano = require('cssnano');
+const purgecss = require('@fullhuman/postcss-purgecss');
 
-export default function() {
-  const sitePath = process.env.SITE_PATH || '_site';
+module.exports = function() {
+  const contentPath = process.env.CONTENT_PATH || '_site';
+  console.log('Using content path:', contentPath);
 
   return {
     map: {
@@ -13,11 +14,11 @@ export default function() {
     plugins: [
       purgecss({
         content: [
-          `${sitePath}/**/*.html`,
-          `${sitePath}/**/*.js`
+          `${contentPath}/**/*.html`,
+          `${contentPath}/**/*.js`
         ],
         css: [
-          `${sitePath}/**/*.css`
+          `${contentPath}/**/*.css`
         ],
         keyframes: true,
         fontFace: true,
@@ -44,4 +45,4 @@ export default function() {
       })
     ]
   };
-}
+};

@@ -3,12 +3,20 @@ description: 'Minify CSS and associated map file.'
 
 inputs:
   path:
-    description: 'The directory containing the static website'
+    description: 'The directory containing the website content.'
     required: true
   css:
-    description: 'The CSS file to minify'
+    description: 'The CSS file to minify. It will be overwritten.'
     required: true
 
 runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/lymanepp/minify-css:main'
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Minify CSS
+      shell: bash
+      run: CONTENT_PATH='${{ inputs.path }}' node ${{ github.action_path }}/dist/index.js --config ${{ github.action_path }}/dist -r '${{ inputs.css }}'

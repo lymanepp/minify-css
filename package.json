@@ -1,8 +1,9 @@
 {
-  "type": "module",
+  "type": "commonjs",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
     "cssnano": "^7.0.6",
+    "esbuild": "^0.24.0",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0"
   }
